@@ -1,0 +1,76 @@
+.profile {
+  display: block;
+  height: 328px;
+  width: 252px;
+  padding-top: 34px;
+  border-radius: 2%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 40px;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 28px;
+}
+
+.name {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tag {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: #a1abb6;
+}
+
+.location {
+  margin: 0 0 32px 0;
+  font-size: 16px;
+  color: #a1abb6;
+}
+
+.stats {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #f3f6f9;
+  border-top: 1px solid #a1abb6;
+}
+
+.stats_tem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 84px;
+  width: 82px;
+}
+
+.stats_tem:not(:last-child) {
+  border-right: 1px solid #a1abb6;
+}
+
+.label {
+  color: #a1abb6;
+}
+
+.likes {
+  font-weight: bold;
+}
+
+.quantity {
+  font-weight: bold;
+}
