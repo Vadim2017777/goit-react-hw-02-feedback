@@ -1,9 +1,10 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
+
 import styles from './Statistics.module.css';
 
-const color = () =>
-  '#' + (Math.random().toString(16) + '000000').substring(2, 8).toUpperCase();
+import color from '../helpers/color.js';
 
 const Statistics = ({ title, stats }) => (
   <section className={styles.statistics}>
