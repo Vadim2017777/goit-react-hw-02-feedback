@@ -16,19 +16,18 @@ import Transactions from './data/Transactions.json';
 
 import TransactionHistory from './TransactionHistory/TransactionHistory';
 
-export default function App() {
-  return (
-    <>
-      <Profile
-        name={User.name}
-        tag={User.tag}
-        location={User.location}
-        avatar={User.avatar}
-        stats={User.stats}
-      />
-      <FriendList friends={Friends} />
-      <Statistics title="Upload stats" stats={StatisticalData} />
-      <TransactionHistory items={Transactions} />
-    </>
-  );
-}
+const App = () => (
+  <>
+    <Profile
+      name={User.name}
+      tag={User.tag}
+      location={User.location}
+      avatar={User.avatar}
+      stats={User.stats}
+    />
+    <FriendList friends={Friends} />
+    <Statistics title="Upload stats" stats={StatisticalData} />
+    <TransactionHistory items={Transactions} />
+  </>
+);
+export default App;
