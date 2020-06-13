@@ -1,21 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const FeedBackControls = ({
-  onIncrementGood,
-  onIncrementNeutral,
-  onIncrementBad,
-}) => (
+import './FeedBackOptions.module.css';
+
+const FeedBackControls = ({ options, onLeaveFeedback }) => (
   <>
-    <button type="button" onClick={onIncrementGood}>
+    <button type="button" onClick={() => onLeaveFeedback(options.good)}>
       Good
     </button>
-    <button type="button" onClick={onIncrementNeutral}>
+    <button type="button" onClick={() => onLeaveFeedback(options.neutral)}>
       Neutral
     </button>
-    <button type="button" onClick={onIncrementBad}>
+    <button type="button" onClick={() => onLeaveFeedback(options.bad)}>
       Bad
     </button>
   </>
 );
+
+FeedBackControls.propTypes = {
+  options: PropTypes.object.isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
 
 export default FeedBackControls;

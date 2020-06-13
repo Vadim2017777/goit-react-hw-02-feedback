@@ -16,31 +16,17 @@ class App extends Component {
     bad: 0,
   };
 
-  handelIncrementGood = () => {
-    this.setState(prevState => {
-      return { good: prevState.good + 1 };
-    });
-  };
-  handelIncrementNeutral = () => {
-    this.setState(prevState => {
-      return { neutral: prevState.neutral + 1 };
+  onLeaveFeedback = value => {
+    this.setState({
+      [value]: this.state[value] + 1,
     });
   };
 
-  handelIncrementBad = () => {
-    this.setState(prevState => {
-      return { bad: prevState.bad + 1 };
-    });
-  };
+  countTotalFeedback = () =>
+    Object.values(this.state).reduce((acc, value) => acc + value);
 
-  countTotalFeedback = () => {
-    const total = this.state.good + this.state.bad + this.state.neutral;
-    return total;
-  };
-
-  countPositiveFeedbackPercentage = () => {
-    const total = this.state.good + this.state.bad + this.state.neutral;
-    const percentage = (this.state.good / total) * 100;
+  countPositiveFeedbackPercentage = (total, good) => {
+    const percentage = (good / total) * 100;
     if (Number.isNaN(percentage)) {
       return 0;
     }
@@ -52,26 +38,33 @@ class App extends Component {
     const { neutral } = this.state;
     const { bad } = this.state;
     const total = this.countTotalFeedback();
-    const posFeedBack = this.countPositiveFeedbackPercentage();
+    const posFeedBack = this.countPositiveFeedbackPercentage(total, good);
+    const options = {
+      good: 'good',
+      neutral: 'neutral',
+      bad: 'bad',
+    };
     return (
       <>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            onIncrementGood={this.handelIncrementGood}
-            onIncrementNeutral={this.handelIncrementNeutral}
-            onIncrementBad={this.handelIncrementBad}
+            options={options}
+            onLeaveFeedback={this.onLeaveFeedback}
           />
         </Section>
-
-        <Section title="Statistics">
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={total}
-            positivePercentage={posFeedBack}
-          />
-        </Section>
+        {(good || neutral || bad) > 0 ? (
+          <Section title="Statistics">
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positivePercentage={posFeedBack}
+            />
+          </Section>
+        ) : (
+          <h2>No feedback given</h2>
+        )}
       </>
     );
   }
