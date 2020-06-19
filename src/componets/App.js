@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
 
 import FeedbackOptions from './FeedBackControls/FeedbackOptions';
-
 import Section from './Section/Section';
-
 import Statistics from './Statistics/Statistics';
 
 class App extends Component {
-  static propTypes = {};
-  static defaultProps = {};
-
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
   };
 
-  onLeaveFeedback = value => {
+  onLeaveFeedback = e => {
+    const { name } = e.target.dataset;
     this.setState({
-      [value]: this.state[value] + 1,
+      [name]: this.state[name] + 1,
     });
   };
 
@@ -34,25 +30,17 @@ class App extends Component {
   };
 
   render() {
-    const { good } = this.state;
-    const { neutral } = this.state;
-    const { bad } = this.state;
+    const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
     const posFeedBack = this.countPositiveFeedbackPercentage(total, good);
-    const options = {
-      good: 'good',
-      neutral: 'neutral',
-      bad: 'bad',
-    };
+    const isShowStatistic = good || neutral || bad;
+
     return (
       <>
         <Section title="Please leave feedback">
-          <FeedbackOptions
-            options={options}
-            onLeaveFeedback={this.onLeaveFeedback}
-          />
+          <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback} />
         </Section>
-        {(good || neutral || bad) > 0 ? (
+        {isShowStatistic > 0 ? (
           <Section title="Statistics">
             <Statistics
               good={good}
